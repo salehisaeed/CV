@@ -1,0 +1,130 @@
+\renewcommand{\baselinestretch}{1} 
+\usepackage[T1]{fontenc}   
+
+\usepackage[page,toc,titletoc,title]{appendix}
+\usepackage{tocloft}
+\usepackage{titletoc}
+\usepackage[final]{pdfpages}
+% \usepackage{floatpag}
+
+\usepackage{amsmath,amsfonts,amsthm}     % Math packages
+\usepackage{graphicx}                    % Enable pdflatex
+\usepackage{tcolorbox}
+
+% \usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
+\usepackage[a4paper,margin=2cm, bottom=2cm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,   citecolor=blue]{hyperref}
+\usepackage{float}
+% \usepackage{array}
+\usepackage{longtable}
+
+\usepackage{tabularx}
+\newcolumntype{B}{X}
+\newcolumntype{S}{>{\hsize=0.23\hsize}X}
+\newcolumntype{V}{>{\hsize=0.22\hsize}X}
+\newcolumntype{U}{>{\hsize=0.03\hsize}X}
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\setlist[description]{leftmargin=0cm,labelindent=0cm}
+\usepackage{multicol}
+\usepackage{csquotes}
+
+\frenchspacing              % Better looking spacings after periods
+% \pagestyle{empty}           % No pagenumbers/headers/footers
+\usepackage{layout}
+\usepackage{soul}
+
+% \usepackage{fontawesome}
+\usepackage[fixed]{fontawesome5}
+\newcommand{\makefield}[2]{\makebox[1em]{\color{MarkerColour!80!black}#1} #2\hspace{1.5em}}
+\definecolor{MarkerColour}{HTML}{0000CC}
+
+
+
+% ------------------------------------------------------------
+\usepackage{titlesec}
+\titleformat{\section}{
+\vspace{1em}\scshape\raggedright\Large
+}{\thesection}{1em}{}[{\titlerule[2pt]} \vspace{-2pt}]
+
+
+\titleformat{\subsection}{
+	\vspace{1em}\raggedright\bfseries\large
+}{\thesubsection}{1em}{}
+% \titleformat{\subsection}{
+% 	\vspace{1em}\raggedright\bfseries\large
+% }{\thesubsection}{1em}{}[\vspace{-8pt}\rule{0.5\textwidth}{1pt} \vspace{-5pt}]
+% ------------------------------------------------------------
+
+
+
+\usepackage[maxbibnames=99, maxcitenames=2, defernumbers=true, doi=true, url=false, sorting=none, isbn=true]{biblatex}
+\renewbibmacro{in:}{}
+\addbibresource{Publications.bib} 
+\newbibmacro{string+doiurlisbn}[1]{%
+    \iffieldundef{doi}{%
+        \iffieldundef{url}{%
+            \iffieldundef{isbn}{%
+                \iffieldundef{issn}{%
+                    #1%
+                }{%
+                    \href{http://books.google.com/books?vid=ISSN\thefield{issn}}{#1}%
+                }%
+            }{%
+                \href{http://books.google.com/books?vid=ISBN\thefield{isbn}}{#1}%
+            }%
+        }{%
+            \href{\thefield{url}}{#1}%
+        }%
+    }{%
+        \href{http://dx.doi.org/\thefield{doi}}{#1}%
+    }%
+}
+\DeclareFieldFormat{title}{\usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}
+\DeclareFieldFormat[article,incollection,inproceedings]{title}%
+{\usebibmacro{string+doiurlisbn}{\mkbibquote{#1}}}
+% \setlength\bibitemsep{1\itemsep}
+\AtEveryBibitem{\clearfield{month}}
+\AtEveryCitekey{\clearfield{month}}
+% \AtNextBibliography{\small}
+% \AtBeginBibliography{\small}
+\AtEveryBibitem{\clearfield{addendum}}
+\AtEveryCitekey{\clearfield{addendum}}
+
+\renewcommand*{\mkbibnamegiven}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1}}
+    {#1}}
+
+\renewcommand*{\mkbibnamefamily}[1]{%
+  \ifitemannotation{highlight}
+    {\textbf{#1}}
+    {#1}}
+
+
+\usepackage{tikz}
+\definecolor{frontColor}{rgb}{0.22,0.45,0.70}% light blue
+\definecolor{backColor}{RGB}{200,200,200}% grey
+\newcommand{\grade}[1]{%
+    \begin{tikzpicture}
+    \clip (1em-.4em,-.35em) rectangle (5em +.5em ,0.5em);
+    \foreach \x in {1,2,...,5}{
+        \path[{fill=backColor}] (\x em,0) circle (.3em);
+    }
+    \begin{scope}
+    \clip (1em-.4em,-.35em) rectangle (#1em +.5em ,0.5em);
+    \foreach \x in {1,2,...,5}{
+        \path[{fill=frontColor}] (\x em,0) circle (.3em);
+    }
+    \end{scope}
+    \end{tikzpicture}%
+}
+
+
+% no indent globally
+% \setlength{\parindent}{0pt}
+
+
+
+\usepackage{threeparttable}
