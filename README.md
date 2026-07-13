@@ -1,3 +1,5 @@
-# Curriculum Vitae
+# Saeed Salehi — Curriculum Vitae
 
-This repository contains the LaTeX source for my academic CV.  
+LaTeX source for my academic CV. Compiled PDF: [SaeedSalehi_CV.pdf](SaeedSalehi_CV.pdf)
+
+Built with LaTeX on Overleaf.
