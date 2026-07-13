@@ -1,15 +1,16 @@
-\renewcommand{\baselinestretch}{1} 
-\usepackage[T1]{fontenc}   
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{microtype}
 
 \usepackage[page,toc,titletoc,title]{appendix}
 \usepackage{tocloft}
 \usepackage{titletoc}
 \usepackage[final]{pdfpages}
-% \usepackage{floatpag}
 
-\usepackage{amsmath,amsfonts,amsthm}     % Math packages
+\usepackage{amsmath}                     % Math packages
+\usepackage{amssymb}                     % \checkmark and other symbols
+\usepackage{caption}                     % \caption* (unnumbered captions)
 \usepackage{graphicx}                    % Enable pdflatex
-\usepackage{tcolorbox}
 
 % \usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
 \usepackage[a4paper,margin=2cm, bottom=2cm]{geometry}
@@ -30,6 +31,7 @@
 \usepackage{multicol}
 \usepackage{csquotes}
 
+\setcounter{secnumdepth}{0} % No section numbering in CV
 \frenchspacing              % Better looking spacings after periods
 % \pagestyle{empty}           % No pagenumbers/headers/footers
 \usepackage{layout}
@@ -78,7 +80,7 @@
             \href{\thefield{url}}{#1}%
         }%
     }{%
-        \href{http://dx.doi.org/\thefield{doi}}{#1}%
+        \href{https://doi.org/\thefield{doi}}{#1}%
     }%
 }
 \DeclareFieldFormat{title}{\usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}

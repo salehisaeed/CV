@@ -1,0 +1,11 @@
+% ===============================================
+\section{Open-Source Software}
+
+\begin{itemize}[]
+    \item \href{https://github.com/salehisaeed/TensorforceFoam}{\texttt{TensorforceFoam}}: A TensorFlow-based intrusive Deep Reinforcement Learning (DRL) framework for OpenFOAM. The Tensorforce package is utilized for the DRL computations. The term intrusive refers to the direct integration of the DRL agent within the CFD environment. Such integration eliminates the need for any external information exchange during DRL episodes. The framework is parallelized using the message passing interface (MPI) for Python (mpi4py) to manage parallel environments for computationally intensive CFD cases through distributed computing.
+
+    \item \href{https://github.com/salehisaeed/semiImplicitSlip}{\texttt{semiImplicitSlip}}: A mesh motion library in OpenFOAM that implements a robust semi-implicit algorithm for slipping the mesh points on curved surfaces. The algorithm includes two steps, namely, an explicit step based on the general slip condition and an implicit step based on the Dirichlet condition. It employs the Laplacian smoothing equations to spread the mesh deformation into the domain. Additionally, a solid-body rotation may be added on top of the deformed mesh, which could be useful for modelling the runner region in transient operation of Kaplan turbines which contains simultaneous mesh deformation and solid-body rotation of the mesh.
+
+    \item \href{https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/31JGOM}{\texttt{Francis-99 transients}}: Open-source case and code for CFD simulation of the transient operation of a Francis turbine in OpenFOAM.
+\end{itemize}
+% ===============================================
