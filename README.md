@@ -4,4 +4,4 @@ LaTeX source for my academic CV. Compiled PDF: [SaeedSalehi_CV.pdf](SaeedSalehi_
 
 [![CV preview](preview-01.png)](SaeedSalehi_CV.pdf)
 
-Built with LaTeX on Overleaf.
+Built with LaTeX.
