@@ -14,6 +14,7 @@
 
 % \usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
 \usepackage[a4paper,margin=2cm, bottom=2cm]{geometry}
+\definecolor{AccentColour}{HTML}{2C4A8C}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
 \usepackage{float}
 % \usepackage{array}
@@ -40,15 +41,15 @@
 % \usepackage{fontawesome}
 \usepackage[fixed]{fontawesome5}
 \newcommand{\makefield}[2]{\makebox[1em]{\color{MarkerColour!80!black}#1} #2\hspace{1.5em}}
-\definecolor{MarkerColour}{HTML}{0000CC}
+\definecolor{MarkerColour}{HTML}{2C4A8C}
 
 
 
 % ------------------------------------------------------------
 \usepackage{titlesec}
 \titleformat{\section}{
-\vspace{1em}\scshape\raggedright\Large
-}{\thesection}{1em}{}[{\titlerule[2pt]} \vspace{-2pt}]
+\vspace{1em}\scshape\raggedright\Large\color{AccentColour}
+}{\thesection}{1em}{}[{\color{AccentColour}\titlerule[2pt]} \vspace{-2pt}]
 
 
 \titleformat{\subsection}{
