@@ -1,56 +1,79 @@
-
-
 % ===============================================
-% \newpage
+% Start on a fresh page: all four grants then sit together. Harmless in the
+% Zenith proposal, whose CV shim neuters \newpage.
+\newpage
 \section{Research Grants}{}
-\begin{itemize}[leftmargin=*,itemsep=15pt]
-    \item \textbf{Enabling Flexible Hydropower Operation by AI-Based Active Flow Control}
-    \begin{description}[nosep, font=\normalfont\itshape]
-    \item[Funding agency:] ÅForsk Foundation
-    \item[Time period:] from 2027 to 2031 (5 years)
-    \item[Amount:] 4\,000\,000 SEK
-    \item[Role:] PI
-    \item[Description:] Awarded by the ÅForsk Foundation through their Early-Career Research Grant program. The project combines CFD, reinforcement learning-based active flow control, and hydropower to enable more flexible hydropower operation. A PhD student will be recruited at Linköping University. The total project budget including departmental co-funding is 5\,550\,000 SEK.
-    \end{description}
 
-    \item \textbf{Artificial Intelligence for Enhanced Hydraulic Turbine Lifetime}
-    \begin{description}[nosep, font=\normalfont\itshape]
-    % \vspace*{-0.4em}
-    \item[Funding agency:] Swedish Hydropower Centre (SVC)
-    \item[Time period:] from 2023-01 to 2027-06 (four and half years)
-    \item[Amount:] 7\,411\,000 SEK
-    \item[Role:] Co-PI (PI: Prof. Håkan Nilsson)
-    \item[Description:] Developed the project concept and led the grant application. The award funded a researcher position (Co-PI) at Chalmers Industriteknik and Chalmers University of Technology. University in-kind contribution of 39.5\% brings the total budget to 12\,498\,000 SEK, including a PhD student position. %For more information about the grant, please see the attached document in Appendix~\ref{grant:AFC}.
-    \end{description}
+% \grantentry{title}{funder}{period}{amount}{role}{description}
+%
+% Replaces the previous run-in description list, whose italic labels
+% ("Funding agency:", "Time period:", ...) sat inline so no two values ever
+% lined up. Here the labels occupy a fixed column, so funders, periods, amounts
+% and roles align vertically down the whole section and can be compared at a
+% glance. The title carries the weight; the role value is emphasised only where
+% it is PI, which is the distinction a reader is looking for.
+%
+% Everything is set at the CV's body size except the titles, which are small
+% bold: labels are marked by colour, not by being shrunk. The \strut gives the
+% label and value boxes a common first baseline, and the \nobreak keeps a
+% grant's metadata block from being split across a page break.
+%
+% Defined here with \providecommand rather than in Includes/Settings.tex so the
+% same file also works when it is \input by the Zenith proposal appendix, which
+% supplies its own preamble and does not read the CV's Settings.tex.
+\providecommand{\grantfield}[2]{%
+  \nobreak\noindent\hspace*{1.3em}%
+  \parbox[t]{7.25em}{\raggedright\strut{\color{AccentColour!62}#1}}%
+  \parbox[t]{\dimexpr\linewidth-8.5em\relax}{\raggedright\strut #2}%
+  \par\nobreak\vspace{0pt}}
+\providecommand{\grantentry}[6]{%
+  \par\addvspace{1.6em}%
+  \noindent{\small\bfseries\color{AccentColour}#1}\par
+  \nobreak\vspace{0.15em}%
+  \grantfield{Funding agency}{#2}%
+  \grantfield{Time period}{#3}%
+  \grantfield{Amount}{#4}%
+  \grantfield{Role}{#5}%
+  \vspace{0.22em}%
+  \begingroup\leftskip=1.3em\relax\noindent #6\par\endgroup
+}
 
-    \newpage
-    \item \textbf{Hydropower Operation and Lifetime Analysis}
-    \begin{description}[nosep, font=\normalfont\itshape]
-    % \vspace*{-0.4em}
-    \item[Funding agency:] Swedish Hydropower Centre (SVC)
-    \item[Time period:] from 2023-03 to 2027-08 (four and half years)
-    \item[Amount:] 5\,266\,000 SEK
-    \item[Role:] Co-PI (PI: Prof. Håkan Nilsson)
-    \item[Description:] Co-developed the application as a continuation of my postdoc research. The grant funded a PhD student (Martina Nobilo) in CFD for hydropower lifetime analysis, whom I co-supervise.% and the PhD started basically started where I left off.
-    \end{description}
+\grantentry
+  {Enabling Flexible Hydropower Operation by AI-Based Active Flow Control}
+  {ÅForsk Foundation}{2027 -- 2031 (5 years)}{4\,000\,000 SEK}{\textbf{PI}}
+  {Awarded by the ÅForsk Foundation through their Early-Career Research Grant
+   program. The project combines CFD, reinforcement learning-based active flow
+   control, and hydropower to enable more flexible hydropower operation. A PhD
+   student will be recruited at Linköping University. The total project budget
+   including departmental co-funding is 5\,550\,000 SEK.}
 
-    % \newpage
-    \item \textbf{Multi-Fidelity Physics-Informed Neural Network to Solve Partial Differential Equations}
-    \begin{description}[nosep, font=\normalfont\itshape]
-    % \vspace*{-0.4em}
-    \item[Funding agency:] Chalmers University of Technology  (internal call, in competition)
-    \item[Time period:] from 2023-01 to 2027-06 (four and half years)
-    \item[Amount:] 5\,517\,000 SEK
-    \item[Role:] Co-PI (A collaborative application, i.e., no PI or main applicant)
-    \item[Description:] This is the funding that we received for a cross-divisional PhD student in the Department of Mechanics and Maritime Sciences of Chalmers University of Technology. I played a pivotal role in formulating the concept and preparing the grant proposal application. Subsequently, the department approved our proposal, leading to the recruitment of a PhD student (Mohammad), whom I am co-supervising. %For more information about the grant and my contribution, please see the attached document in Appendix~\ref{grant:PINN}.
+\grantentry
+  {Artificial Intelligence for Enhanced Hydraulic Turbine Lifetime}
+  {Swedish Hydropower Centre (SVC)}{2023-01 -- 2027-06 (four and half years)}
+  {7\,411\,000 SEK}{Co-PI (PI: Prof.\ Håkan Nilsson)}
+  {Developed the project concept and led the grant application. The award funded
+   a researcher position (Co-PI) at Chalmers Industriteknik and Chalmers
+   University of Technology. University in-kind contribution of 39.5\% brings
+   the total budget to 12\,498\,000 SEK, including a PhD student position.}
 
-    \end{description}
-    
-\end{itemize}
+\grantentry
+  {Hydropower Operation and Lifetime Analysis}
+  {Swedish Hydropower Centre (SVC)}{2023-03 -- 2027-08 (four and half years)}
+  {5\,266\,000 SEK}{Co-PI (PI: Prof.\ Håkan Nilsson)}
+  {Co-developed the application as a continuation of my postdoc research. The
+   grant funded a PhD student (Martina Nobilo) in CFD for hydropower lifetime
+   analysis, whom I co-supervise.}
+
+\grantentry
+  {Multi-Fidelity Physics-Informed Neural Network to Solve Partial Differential
+   Equations}
+  {Chalmers University of Technology (internal, in competition)}
+  {2023-01 -- 2027-06 (four and half years)}{5\,517\,000 SEK}
+  {Co-PI (collaborative application, no single main applicant)}
+  {This is the funding that we received for a cross-divisional PhD student in
+   the Department of Mechanics and Maritime Sciences of Chalmers University of
+   Technology. I played a pivotal role in formulating the concept and preparing
+   the grant proposal application. Subsequently, the department approved our
+   proposal, leading to the recruitment of a PhD student (Mohammad), whom I am
+   co-supervising.}
 % ===============================================
-
-
-
-
-
-

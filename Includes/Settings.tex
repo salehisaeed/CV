@@ -21,10 +21,14 @@
 \usepackage{longtable}
 
 \usepackage{tabularx}
-\newcolumntype{B}{X}
-\newcolumntype{S}{>{\hsize=0.23\hsize}X}
-\newcolumntype{V}{>{\hsize=0.22\hsize}X}
-\newcolumntype{U}{>{\hsize=0.03\hsize}X}
+% tabularx requires the \hsize factors of the X columns to sum to the number of
+% X columns. These summed to 1.51 across five, which made the UBSVU table in
+% Sections/Teaching.tex overflow the margin (27 overfull boxes at 12pt).
+% Rebalanced to sum to 5, sized so "CLS925", "2.5 ECTS" and "2021" each fit.
+\newcolumntype{B}{>{\hsize=2.45\hsize}X}
+\newcolumntype{S}{>{\hsize=0.68\hsize}X}
+\newcolumntype{V}{>{\hsize=0.85\hsize}X}
+\newcolumntype{U}{>{\hsize=0.51\hsize}X}
 
 \usepackage{booktabs}
 \usepackage{enumitem}
@@ -33,7 +37,10 @@
 \usepackage{csquotes}
 
 \setcounter{secnumdepth}{0} % No section numbering in CV
-\frenchspacing              % Better looking spacings after periods
+\frenchspacing
+% Slack so an unbreakable token (a \texttt package name, a long URL) cannot
+% push a line past the margin; at 12pt these would otherwise overflow.
+\emergencystretch=3em              % Better looking spacings after periods
 % \pagestyle{empty}           % No pagenumbers/headers/footers
 \usepackage{layout}
 \usepackage{soul}

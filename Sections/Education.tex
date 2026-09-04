@@ -1,31 +1,56 @@
-
-
+\renewcommand{\cventrysep}{0.95em}
 % ===============================================
+% Uses \cventry / cvbody, defined in Sections/Employment.tex (guarded with
+% \providecommand / \ifdefined, so whichever of the two is loaded first
+% defines them and the other is a no-op). See the note there on why they must
+% not move into Includes/Settings.tex.
+\providecommand{\cventrysep}{0.95em}
+\providecommand{\cvfirstentry}{1}
+\providecommand{\cventry}[3]{%
+  \ifnum\cvfirstentry=0 \par\addvspace{\cventrysep}\fi
+  \gdef\cvfirstentry{0}%
+  \par\noindent
+  \parbox[t]{\dimexpr\linewidth-8.5em\relax}{\raggedright\textbf{#1}, \textit{#2}}%
+  \hfill\makebox[8em][r]{\footnotesize\color{black!60}#3}%
+  \par\nobreak\vspace{0.1em}}
+\ifdefined\cvbody\else
+  \newenvironment{cvbody}
+    {\begin{list}{}{\setlength{\leftmargin}{1.2em}\setlength{\rightmargin}{0mm}%
+       \setlength{\topsep}{0.1em}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}}%
+     \item[]}
+    {\end{list}}
+\fi
+
 \newpage
 \section{Education}{}
+\gdef\cvfirstentry{1}
+% Education sits alone on its page, because Research Grants needs a full page
+% of its own and the two cannot share one. The entries are therefore set with
+% more air than elsewhere, so the page reads as deliberately open rather than
+% as a section that ran out halfway down. Restored after the section.
+\renewcommand{\cventrysep}{2.4em}
 
-\begin{tabularx}{\textwidth}{l X}
-    %------------------------------------------------
-    \textbf{Docent} & Linköping University, Fluid Mechanics \\
-    Feb. 2026 & \\
-    \multicolumn{2}{c}{} \\
-    %------------------------------------------------
-    \textbf{PhD} & University of Tehran, Mechanical Engineering, Hydraulic Machinery \\
-    2012 -- 2018 & Thesis: Uncertainty quantification of turbulent flows in hydraulic machinery \\
-    & Supervisors: Prof. Mehrdad Raisee, Prof. Michel Cervantes, Prof. Ahmad Nourbakhsh\\
-    & The thesis investigates the impact of operational and geometrical uncertainties on the performance of hydraulic machinery, extending uncertainty quantification (UQ) to this critical field using polynomial chaos expansion (PCE). To address the high computational costs of traditional UQ methods, I developed efficient techniques such as compressed sensing and multifidelity $\ell_1$ minimization, validated through both analytical and CFD problems. Real-world case studies demonstrate that combined operational and geometrical uncertainties significantly influence the flow and performance of hydraulic pumps. This work advances UQ methods, contributing to more robust and reliable hydraulic machinery design.\\
-    % & See Appendix~\ref{sec:PhD} for the PhD diploma.\\
-    \multicolumn{2}{c}{} \\
-    %------------------------------------------------
-    \textbf{MSc.} & University of Tehran, Mechanical Engineering, Energy Conversion \\
-    2010 -- 2012 & Thesis: Computation of steady and pulsating turbulent flow through a straight asymmetric diffuser with moderate adverse pressure gradient \\
-    & Supervisors: Prof. Mehrdad Raisee, Prof. Michel Cervantes\\
-    
-    \multicolumn{2}{c}{} \\
-    %------------------------------------------------
-    \textbf{BSc.} & University of Tehran, Mechanical Engineering \\
-    2006 -- 2010 & Thesis: Large eddy simulation of stall development around airfoils \\
-    %------------------------------------------------
-\end{tabularx}
+\cventry{Docent}{Linköping University, Fluid Mechanics}{Feb. 2026}
+\begin{cvbody}
+Qualifies for principal supervision of doctoral students; awarded on review of scientific and pedagogical qualifications.
+\end{cvbody}
+
+\cventry{PhD}{University of Tehran, Mechanical Engineering, Hydraulic Machinery}{2012 -- 2018}
+\begin{cvbody}
+\textit{Thesis:} Uncertainty quantification of turbulent flows in hydraulic machinery\\
+\textit{Supervisors:} Prof.\ Mehrdad Raisee, Prof.\ Michel Cervantes, Prof.\ Ahmad Nourbakhsh\\
+The thesis investigates the impact of operational and geometrical uncertainties on the performance of hydraulic machinery, extending uncertainty quantification (UQ) to this critical field using polynomial chaos expansion (PCE). To address the high computational costs of traditional UQ methods, I developed efficient techniques such as compressed sensing and multifidelity $\ell_1$ minimization, validated through both analytical and CFD problems. Real-world case studies demonstrate that combined operational and geometrical uncertainties significantly influence the flow and performance of hydraulic pumps. This work advances UQ methods, contributing to more robust and reliable hydraulic machinery design.
+\end{cvbody}
+
+\cventry{MSc.}{University of Tehran, Mechanical Engineering, Energy Conversion}{2010 -- 2012}
+\begin{cvbody}
+\textit{Thesis:} Computation of steady and pulsating turbulent flow through a straight asymmetric diffuser with moderate adverse pressure gradient\\
+\textit{Supervisors:} Prof.\ Mehrdad Raisee, Prof.\ Michel Cervantes
+\end{cvbody}
+
+\cventry{BSc.}{University of Tehran, Mechanical Engineering}{2006 -- 2010}
+\begin{cvbody}
+\textit{Thesis:} Large eddy simulation of stall development around airfoils
+\end{cvbody}
+\renewcommand{\cventrysep}{0.95em}
 % ===============================================
-

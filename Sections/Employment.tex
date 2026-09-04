@@ -1,41 +1,67 @@
 % ===============================================
+% \cventry{role}{institution}{dates} + cvbody
+%
+% Replaces the previous two-column tabularx. That table sized its left column
+% by its widest label ("Associate Professor", ~33mm) but only ever put a role
+% and a date range there, so every wrapped line of a description sat beside an
+% empty gutter and the text was squeezed into the remaining measure. Here the
+% role, institution and dates share one header line and the description runs at
+% nearly full width beneath it.
+%
+% The date is a \makebox, not a \parbox: 31mm clears the longest date
+% ("Aug. 2025 -- present" measures 28.7mm) so it never wraps, and a plain
+% horizontal box sits on the line's own baseline instead of starting a
+% paragraph whose first baseline drifts below the role's.
+%
+% Defined with \providecommand / \ifdefined so this file also works when it is
+% \input by the Zenith proposal appendix, which supplies its own preamble and
+% does not read the CV's Includes/Settings.tex. Do NOT move these definitions
+% into Includes/Settings.tex: the proposal never reads that file.
+\providecommand{\cventrysep}{0.95em}
+\providecommand{\cvfirstentry}{1}
+\providecommand{\cventry}[3]{%
+  \ifnum\cvfirstentry=0 \par\addvspace{\cventrysep}\fi
+  \gdef\cvfirstentry{0}%
+  \par\noindent
+  \parbox[t]{\dimexpr\linewidth-8.5em\relax}{\raggedright\textbf{#1}, \textit{#2}}%
+  \hfill\makebox[8em][r]{\footnotesize\color{black!60}#3}%
+  \par\nobreak\vspace{0.1em}}
+\ifdefined\cvbody\else
+  \newenvironment{cvbody}
+    {\begin{list}{}{\setlength{\leftmargin}{1.2em}\setlength{\rightmargin}{0mm}%
+       \setlength{\topsep}{0.1em}\setlength{\parsep}{0pt}\setlength{\itemsep}{0pt}}%
+     \item[]}
+    {\end{list}}
+\fi
+
 \section{Current Position}
+\gdef\cvfirstentry{1}
 
-\begin{tabularx}{\textwidth}{l X}
-    \textbf{Associate Professor} & Linköping University \\
-    2025 -- present & Division of Applied Thermodynamics and Fluid Mechanics, Department of Management and Engineering. My research focuses on combining data-driven methods and artificial intelligence with Computational Fluid Dynamics (CFD) to develop efficient and reliable methods for simulation, model reduction, control, and uncertainty quantification of fluid flows. 
+\cventry{Associate Professor}{Linköping University}{Aug. 2025 -- present}
+\begin{cvbody}
+Division of Applied Thermodynamics and Fluid Mechanics, Department of Management and Engineering. My research focuses on combining data-driven methods and artificial intelligence with Computational Fluid Dynamics (CFD) to develop efficient and reliable methods for simulation, model reduction, control, and uncertainty quantification of fluid flows.
 
-    I have also received my Docent title in Fluid Mechanics at Linköping University in February 2026. \\
-
-    \\
-\end{tabularx}
+I have also received my Docent title in Fluid Mechanics at Linköping University in February 2026.
+\end{cvbody}
 % ===============================================
 
 
 % ===============================================
 \section{Previous Appointments}
+\gdef\cvfirstentry{1}
 
-\begin{tabularx}{\textwidth}{l X}
+\cventry{Researcher}{\href{https://chalmersindustriteknik.se/en/}{Chalmers Industriteknik}, Chalmers University of Technology}{2023 -- 2025}
+\begin{cvbody}
+Employed by Chalmers Industriteknik (CIT), conducting research on the application of artificial intelligence and machine learning in computational fluid dynamics. During my time at CIT, I was hired by Chalmers University of Technology for a project on ``Artificial Intelligence in Fluid Dynamics for Improving the Lifetime of Hydraulic Turbines''.
+\end{cvbody}
 
-    %------------------------------------------------
-    \textbf{Researcher} & Employed by \href{https://chalmersindustriteknik.se/en/}{Chalmers Industriteknik (CIT)}, conducting research on \\
-    2023 -- 2025 & the application of artificial intelligence and machine learning in computational fluid dynamics. During my time at CIT, I was hired by Chalmers University of Technology for a project on ``Artificial Intelligence in Fluid Dynamics for Improving the Lifetime of Hydraulic Turbines''.
-    \\
-    \multicolumn{2}{c}{} \\
-    %------------------------------------------------
+\cventry{Postdoctoral Researcher}{Chalmers University of Technology}{2019 -- 2023}
+\begin{cvbody}
+Project: New operating procedures of hydropower for a sustainable energy system. During my postdoctoral position, my research focused on developing advanced numerical methods in OpenFOAM to simulate the transient operations of hydraulic turbines. I also expanded my expertise in data-driven and machine-learning approaches, particularly in the field of reduced-order modeling, such as Proper Orthogonal Decomposition (POD) and Dynamic Mode Decomposition (DMD). The research resulted in several publications in high-impact, peer-reviewed journals and an open-source software package for simulating hydraulic turbine transients, which is being utilized by Vattenfall, a leading energy company in Sweden.
+\end{cvbody}
 
-    %------------------------------------------------
-    \textbf{Postdoc} & Chalmers University of Technology \\
-    2019 -- 2023 & Project: New operating procedures of hydropower for a sustainable energy system.
-    During my postdoctoral position, my research focused on developing advanced numerical methods in OpenFOAM to simulate the transient operations of hydraulic turbines. I also expanded my expertise in data-driven and machine-learning approaches, particularly in the field of reduced-order modeling, such as Proper Orthogonal Decomposition (POD) and Dynamic Mode Decomposition (DMD).
-    The research resulted in several publications in high-impact, peer-reviewed journals and an open-source software package for simulating hydraulic turbine transients, which is being utilized by Vattenfall, a leading energy company in Sweden. \\
-    \multicolumn{2}{c}{} \\
-    %------------------------------------------------
-
-    %------------------------------------------------
-    \textbf{Lecturer} & University of Science and Culture, Tehran, Iran \\
-    2018 -- 2019 & Taught ``Introduction to Turbomachinery'' at the undergraduate level \\
-    %------------------------------------------------
-
-\end{tabularx}
+\cventry{Lecturer}{University of Science and Culture, Tehran, Iran}{2018 -- 2019}
+\begin{cvbody}
+Taught ``Introduction to Turbomachinery'' at the undergraduate level.
+\end{cvbody}
 % ===============================================

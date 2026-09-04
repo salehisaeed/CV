@@ -1,41 +1,60 @@
 % ===============================================
-% \newpage
+% Start fresh: otherwise the Reviewer list is split onto the next page. Harmless in the Zenith proposal, whose CV shim neuters \newpage.
+\newpage
 \section{Academic Service}{}
 
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\textwidth}{@{} p{0.22\textwidth} X @{}}
+% Laid out like CV/Sections/ResearchGrants.tex: each category is a heading on
+% its own line, with its content indented beneath at full width, rather than a
+% label column with the content squeezed into the remaining measure. That suits
+% this section because the content is heterogeneous and long (thesis titles, a
+% twelve-journal list) and benefits from the full width.
+%
+% \svcbody uses a \parbox rather than \leftskip so an entry cannot be split
+% across a page: previously the second examination entry left its thesis line
+% stranded on the following page. An entry that does not fit now moves whole.
+%
+% Defined with \providecommand so this file also works when it is \input by the
+% Zenith proposal appendix, which supplies its own preamble.
+\providecommand{\svccat}[1]{%
+  \par\addvspace{1.05em}%
+  \noindent{\small\bfseries\color{AccentColour}#1}\par
+  \nobreak\vspace{0.25em}}
+\providecommand{\svcbody}[1]{%
+  \par\noindent\hspace*{1.3em}%
+  \parbox{\dimexpr\linewidth-1.3em\relax}{\raggedright #1}\par}
 
-\textbf{Editorial roles} &
-\textbf{Section Editor}, \href{https://journal.openfoam.com/index.php/ofj}{OpenFOAM Journal}, 2026 -- present \\
+\svccat{Editorial roles}
+\svcbody{\textbf{Section Editor}, \href{https://journal.openfoam.com/index.php/ofj}{OpenFOAM Journal}, 2026 -- present}
 
-\\
+\svccat{Committees}
+\svcbody{\textbf{Technical Committee Member},
+  \href{https://wiki.openfoam.com/Turbomachinery_Special_Interest_Group}{OpenFOAM Turbomachinery Technical Committee},
+  \href{https://www.openfoam.com/governance/overview}{OpenFOAM Governance}, 2022 -- present}
 
-\textbf{Committees} &
-\textbf{Technical Committee Member}, \href{https://wiki.openfoam.com/Turbomachinery_Special_Interest_Group}{OpenFOAM Turbomachinery Technical Committee}, \href{https://www.openfoam.com/governance/overview}{OpenFOAM Governance}, 2022 -- present \\
+\svccat{PhD examination committees}
+\svcbody{\textbf{External Reviewer (90\% seminar)}, University of Gävle, Sweden, 2026\\
+  Thesis: ``Experimental and Numerical Evaluation of Wall-Confluent Jets Thermal
+  Performance for Greenhouse Climate Control''. PhD candidate: Gasper Choonya}
+\vspace{0.4em}
+\svcbody{\textbf{External Examiner (Defense committee)}, Universitat Rovira i Virgili,
+  Tarragona, Spain, 2024\\
+  Thesis: ``Numerical Modeling of High Aspect Ratio Fibers in Fluid Flows''.
+  PhD candidate: MohammadJavad Norouzi}
 
-\\
-
-\textbf{PhD examination} \newline \textbf{committees} &
-\textbf{External Reviewer (90\% seminar)}, University of Gävle, Sweden, 2026 \newline
-Thesis: ``Experimental and Numerical Evaluation of Wall-Confluent Jets Thermal Performance for Greenhouse Climate Control''. PhD candidate: Gasper Choonya \\
-& \textbf{External Examiner (Defense committee)}, Universitat Rovira i Virgili, Tarragona, Spain, 2024 \newline
-Thesis: ``Numerical Modeling of High Aspect Ratio Fibers in Fluid Flows''. PhD candidate: MohammadJavad Norouzi \\
-
-\\
-
-\textbf{Reviewer} &
-\href{https://aip.scitation.org/journal/phf}{Physics of Fluids} (\emph{AIP}),
-\href{https://arc.aiaa.org/aiaaj/about}{AIAA Journal} (\emph{AIAA}),
-\href{https://www.journals.elsevier.com/computers-and-fluids}{Computers and Fluids} (\emph{Elsevier}),
-\href{https://www.journals.elsevier.com/applied-mathematical-modelling}{Applied Mathematical Modeling} (\emph{Elsevier}),
-\href{https://fluidsengineering.asmedigitalcollection.asme.org/journal.aspx}{Journal of Fluids Engineering} (\emph{ASME}),
-\href{https://www.springer.com/journal/10237}{Biomechanics and Modeling in Mechanobiology} (\emph{Springer}),
-\href{https://journals.sagepub.com/home/sci}{Science Progress} (\emph{Sage}),
-\href{https://www.mdpi.com/journal/fluids}{Fluids} (\emph{MDPI}),
-\href{https://www.mdpi.com/journal/energies}{Energies} (\emph{MDPI}),
-\href{https://www.mdpi.com/journal/algorithms}{Algorithms} (\emph{MDPI}),
-\href{https://www.mdpi.com/journal/processes}{Processes} (\emph{MDPI}),
-\href{https://jafmonline.net}{Applied Fluid Mechanics} (\emph{IUT}) \\
-
-\end{tabularx}
+% Journal names are not hyperlinked: twelve links made this the heaviest block
+% of colour in the CV, and a journal homepage is not something a reader of a CV
+% follows. The information is unchanged.
+\svccat{Reviewer for}
+\svcbody{Physics of Fluids (\emph{AIP}),
+  AIAA Journal (\emph{AIAA}),
+  Computers and Fluids (\emph{Elsevier}),
+  Applied Mathematical Modeling (\emph{Elsevier}),
+  Journal of Fluids Engineering (\emph{ASME}),
+  Biomechanics and Modeling in Mechanobiology (\emph{Springer}),
+  Science Progress (\emph{Sage}),
+  Fluids (\emph{MDPI}),
+  Energies (\emph{MDPI}),
+  Algorithms (\emph{MDPI}),
+  Processes (\emph{MDPI}),
+  Applied Fluid Mechanics (\emph{IUT})}
 % ===============================================
