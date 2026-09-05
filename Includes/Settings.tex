@@ -110,8 +110,13 @@
 \AtEveryCitekey{\clearfield{month}}
 % \AtNextBibliography{\small}
 % \AtBeginBibliography{\small}
-\AtEveryBibitem{\clearfield{addendum}}
-\AtEveryCitekey{\clearfield{addendum}}
+% addendum carries two different things in Publications.bib: the CRediT
+% statement on journal papers and the book chapter, and the conference name and
+% location on the @unpublished presentations. Clearing it unconditionally hid
+% the CRediT as intended but also stripped every presentation of its conference
+% and venue, leaving only a title and a year. Keep it for @unpublished.
+\AtEveryBibitem{\ifentrytype{unpublished}{}{\clearfield{addendum}}}
+\AtEveryCitekey{\ifentrytype{unpublished}{}{\clearfield{addendum}}}
 
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}
