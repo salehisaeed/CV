@@ -16,6 +16,17 @@
 \usepackage[a4paper,margin=2cm, bottom=2cm]{geometry}
 \definecolor{AccentColour}{HTML}{2C4A8C}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+% PDF metadata: without these the Title/Author/Subject/Keywords fields are
+% empty, so the file shows only as "SaeedSalehi_CV.pdf" in a browser tab,
+% reference manager or document library.
+\hypersetup{
+  pdftitle={Saeed Salehi, Curriculum Vitae},
+  pdfauthor={Saeed Salehi},
+  pdfsubject={Curriculum vitae},
+  pdfkeywords={computational fluid dynamics, machine learning, flow control,
+    turbulence, uncertainty quantification, OpenFOAM, hydropower},
+  pdflang={en},
+}
 \usepackage{float}
 % \usepackage{array}
 \usepackage{longtable}
