@@ -73,6 +73,17 @@
 \titleformat{\subsection}{
 	\vspace{1em}\raggedright\bfseries\large
 }{\thesubsection}{1em}{}
+
+% With secnumdepth=0 every \section takes hyperref's unnumbered (\@ssect) path,
+% which sets no anchor. Every bookmark therefore inherited the last anchor that
+% did exist -- so all 19 of them pointed at Doc-Start or section*.1, and hyperref
+% warned that a bookmark shared its parent's anchor. \phantomsection before each
+% heading gives it its own destination. Loaded after titlesec so the patch
+% applies to titlesec's redefinition.
+\usepackage{etoolbox}
+\pretocmd{\section}{\phantomsection}{}{\PackageError{CV}{patching \string\section\space failed}{}}
+\pretocmd{\subsection}{\phantomsection}{}{\PackageError{CV}{patching \string\subsection\space failed}{}}
+\usepackage{bookmark}
 % \titleformat{\subsection}{
 % 	\vspace{1em}\raggedright\bfseries\large
 % }{\thesubsection}{1em}{}[\vspace{-8pt}\rule{0.5\textwidth}{1pt} \vspace{-5pt}]
