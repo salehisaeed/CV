@@ -3,78 +3,83 @@
 \newpage
 \section{Academic Service}{}
 
-% Laid out like CV/Sections/ResearchGrants.tex: each category is a heading on
-% its own line, with its content indented beneath at full width, rather than a
-% label column with the content squeezed into the remaining measure. That suits
-% this section because the content is heterogeneous and long (thesis titles, a
-% twelve-journal list) and benefits from the full width.
+% Layout (chosen from four tested options): category headings and entry roles
+% are both small bold, the headings set apart by the accent colour and the space
+% around them; every entry is a bullet,
+% as in Supervision and Teaching; the year sits right-aligned on the entry's
+% first line; secondary detail (thesis, candidate, confidentiality note) is set
+% smaller and grey underneath.
 %
-% \svcbody uses a \parbox rather than \leftskip so an entry cannot be split
-% across a page: previously the second examination entry left its thesis line
-% stranded on the following page. An entry that does not fit now moves whole.
+% The date is reserved on the FIRST line only (\parshape), so the following
+% lines run the full width, and each entry reserves only its OWN date's width
+% plus a 1em gap. The dates still form a column because they are right-aligned
+% at the margin. Reserving the widest date ("2022 -- present") for every entry
+% left single words such as "India" or "Sweden" stranded on a second line.
 %
 % Defined with \providecommand so this file also works when it is \input by the
 % Zenith proposal appendix, which supplies its own preamble.
+%
+% \svccat{Category}
+% \svcentry{Role}{Where, or empty}{Date}{Detail, or empty}
+% \svcjournals{Comma-separated list}
+% Spacing hooks: the standalone CV uses these defaults; the Zenith proposal
+% appendix (Includes/C.CV.tex) defines smaller values before \input so the
+% whole section fits on one page there.
+\providecommand{\svccatskip}{1.2em}
+\providecommand{\svcitemskip}{0.3em}
+\makeatletter
+\@ifundefined{svcdatewidth}{\newlength{\svcdatewidth}}{}
+\makeatother
 \providecommand{\svccat}[1]{%
-  \par\addvspace{1.05em}%
+  \par\addvspace{\svccatskip}%
   \noindent{\small\bfseries\color{AccentColour}#1}\par
-  \nobreak\vspace{0.25em}}
-\providecommand{\svcbody}[1]{%
-  \par\noindent\hspace*{1.3em}%
-  \parbox{\dimexpr\linewidth-1.3em\relax}{\raggedright #1}\par}
+  \nobreak\vspace{0.1em}}
+\makeatletter
+\providecommand{\svcentry}[4]{%
+  \settowidth{\svcdatewidth}{\small #3}%
+  \begin{itemize}[leftmargin=1.6em, topsep=\svcitemskip, itemsep=0pt, parsep=0pt]
+  \item \raggedright
+    \makebox[0pt][l]{\makebox[\linewidth][r]{\small\color{black!60}#3}}%
+    \parshape 2
+      \@totalleftmargin \dimexpr\linewidth-\svcdatewidth-1em\relax
+      \@totalleftmargin \linewidth
+    {\small\bfseries #1}\if\relax\detokenize{#2}\relax\else, #2\fi%
+    \if\relax\detokenize{#4}\relax\else\\[0.1em]{\small\color{black!70}#4}\fi
+  \end{itemize}}
+\makeatother
+\providecommand{\svcjournals}[1]{%
+  \begin{itemize}[leftmargin=1.6em, topsep=\svcitemskip]\item \raggedright #1\end{itemize}}
 
 \svccat{Editorial roles}
-\svcbody{\textbf{Section Editor}, \href{https://journal.openfoam.com/index.php/ofj}{OpenFOAM Journal}, 2026 -- present}
+\svcentry{Section Editor}{\href{https://journal.openfoam.com/index.php/ofj/about/editorialTeam}{OpenFOAM Journal}}{2026 -- present}{}
 
 \svccat{Committees}
-\svcbody{\textbf{Technical Committee Member},
-  \href{https://wiki.openfoam.com/Turbomachinery_Special_Interest_Group}{OpenFOAM Turbomachinery Technical Committee},
-  \href{https://www.openfoam.com/governance/overview}{OpenFOAM Governance}, 2022 -- present}
+\svcentry{Technical Committee Member}{\href{https://wiki.openfoam.com/Turbomachinery_Special_Interest_Group}{OpenFOAM Turbomachinery Technical Committee}, \href{https://www.openfoam.com/governance/overview}{OpenFOAM Governance}}{2022 -- present}{}
 
 \svccat{Conference service}
-\svcbody{\textbf{Session Chair}, Multiphase Flows I session,
-  21st OpenFOAM Workshop (OFW21), Guimarães, Portugal, July 2026}
-\vspace{0.6em}
-\svcbody{\textbf{Session Chair}, Reinforcement Learning (RL3) session,
-  3rd ERCOFTAC Workshop on Machine Learning for Fluid Dynamics, CWI, Amsterdam,
-  the Netherlands, March 2026}
+\svcentry{Session Chair}{Multiphase Flows I session, 21st OpenFOAM Workshop (OFW21), Guimarães, Portugal}{July 2026}{}
+\svcentry{Session Chair}{Reinforcement Learning (RL3) session, 3rd ERCOFTAC Workshop on Machine Learning for Fluid Dynamics, CWI, Amsterdam, the Netherlands}{March 2026}{}
 
 \svccat{Doctoral examination and progress review}
-\svcbody{\textbf{Discussion Leader (half-time seminar, 60\%)}, Linköping University,
-  Sweden, 2026\\
-  Thesis: ``Machine Learning for Efficient Water Resource Management and
-  Hydropower Planning''. PhD candidate: Linus Kåge}
-\vspace{0.6em}
-\svcbody{\textbf{External Reviewer (90\% seminar)}, University of Gävle, Sweden, 2026\\
-  Thesis: ``Experimental and Numerical Evaluation of Wall-Confluent Jets Thermal
-  Performance for Greenhouse Climate Control''. PhD candidate: Gasper Choonya}
-\vspace{0.6em}
-\svcbody{\textbf{External Examiner (Defense committee)}, Universitat Rovira i Virgili,
-  Tarragona, Spain, 2024\\
-  Thesis: ``Numerical Modeling of High Aspect Ratio Fibers in Fluid Flows''.
-  PhD candidate: MohammadJavad Norouzi}
+% IIT Delhi keeps the examiner's identity strictly confidential, so unlike the
+% entries below this one names only the institute, the role and the year, with a
+% visible note explaining why. Do not add the candidate, the thesis title, or the
+% honorarium.
+\svcentry{External Thesis Examiner (PhD)}{Indian Institute of Technology Delhi, India}{2026}{\textit{Thesis and candidate details are confidential.}}
+\svcentry{Discussion Leader (half-time seminar, 60\%)}{Linköping University, Sweden}{2026}{Thesis: ``Machine Learning for Efficient Water Resource Management and Hydropower Planning''. PhD candidate: Linus Kåge}
+\svcentry{External Reviewer (90\% seminar)}{University of Gävle, Sweden}{2026}{Thesis: ``Experimental and Numerical Evaluation of Wall-Confluent Jets Thermal Performance for Greenhouse Climate Control''. PhD candidate: Gasper Choonya}
+\svcentry{External Examiner (Defense committee)}{Universitat Rovira i Virgili, Tarragona, Spain}{2024}{Thesis: ``Numerical Modeling of High Aspect Ratio Fibers in Fluid Flows''. PhD candidate: MohammadJavad Norouzi}
 
 % Grant review: the funder's review process is confidential and anonymous, so
-% only the funder, the role and the year are given. Do not add the applicant,
-% the proposal title, the subject area, or the fee.
+% only the funder, the role and the year are given, with a visible note
+% explaining why. Do not add the applicant, the proposal title, the subject
+% area, or the fee.
 \svccat{Grant review}
-\svcbody{\textbf{External Expert Reviewer}, research grant application,
-  Olle Engkvist Foundation (Olle Engkvists Stiftelse), Sweden, 2026}
+\svcentry{External Expert Reviewer}{research grant application, Olle Engkvist Foundation (Olle Engkvists Stiftelse), Sweden}{2026}{\textit{Application details are confidential.}}
 
 % Journal names are not hyperlinked: twelve links made this the heaviest block
 % of colour in the CV, and a journal homepage is not something a reader of a CV
 % follows. The information is unchanged.
 \svccat{Reviewer for}
-\svcbody{Physics of Fluids (\emph{AIP}),
-  AIAA Journal (\emph{AIAA}),
-  Computers \& Fluids (\emph{Elsevier}),
-  Applied Mathematical Modelling (\emph{Elsevier}),
-  Journal of Fluids Engineering (\emph{ASME}),
-  Biomechanics and Modeling in Mechanobiology (\emph{Springer}),
-  Science Progress (\emph{Sage}),
-  Fluids (\emph{MDPI}),
-  Energies (\emph{MDPI}),
-  Algorithms (\emph{MDPI}),
-  Processes (\emph{MDPI}),
-  Journal of Applied Fluid Mechanics (\emph{IUT})}
+\svcjournals{Physics of Fluids (\emph{AIP}), AIAA Journal (\emph{AIAA}), Computers \& Fluids (\emph{Elsevier}), Applied Mathematical Modelling (\emph{Elsevier}), Journal of Fluids Engineering (\emph{ASME}), Biomechanics and Modeling in Mechanobiology (\emph{Springer}), Science Progress (\emph{Sage}), Fluids (\emph{MDPI}), Energies (\emph{MDPI}), Algorithms (\emph{MDPI}), Processes (\emph{MDPI}), Journal of Applied Fluid Mechanics (\emph{IUT})}
 % ===============================================

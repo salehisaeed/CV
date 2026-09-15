@@ -88,6 +88,13 @@
 \usepackage{etoolbox}
 \pretocmd{\section}{\phantomsection}{}{\PackageError{CV}{patching \string\section\space failed}{}}
 \pretocmd{\subsection}{\phantomsection}{}{\PackageError{CV}{patching \string\subsection\space failed}{}}
+% Never strand a section heading at the bottom of a page: if less than about
+% five lines remain (heading, rule, and the first lines of content), start the
+% section on the next page. Without this, "Invited Talks and Expert
+% Assignments" once sat alone at the foot of a page with all its content on the
+% next one. The proposal appendix uses its own \cvheading, so it is unaffected.
+\usepackage{needspace}
+\pretocmd{\section}{\needspace{5\baselineskip}}{}{\PackageError{CV}{patching \string\section\space for needspace failed}{}}
 \usepackage{bookmark}
 % \titleformat{\subsection}{
 % 	\vspace{1em}\raggedright\bfseries\large
