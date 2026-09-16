@@ -1,22 +1,8 @@
-% ===============================================
-% \cventry{role}{institution}{dates} + cvbody
-%
-% Replaces the previous two-column tabularx. That table sized its left column
-% by its widest label ("Associate Professor", ~33mm) but only ever put a role
-% and a date range there, so every wrapped line of a description sat beside an
-% empty gutter and the text was squeezed into the remaining measure. Here the
-% role, institution and dates share one header line and the description runs at
-% nearly full width beneath it.
-%
-% The date is a \makebox, not a \parbox: 31mm clears the longest date
-% ("Aug. 2025 -- present" measures 28.7mm) so it never wraps, and a plain
-% horizontal box sits on the line's own baseline instead of starting a
-% paragraph whose first baseline drifts below the role's.
-%
-% Defined with \providecommand / \ifdefined so this file also works when it is
-% \input by the Zenith proposal appendix, which supplies its own preamble and
-% does not read the CV's Includes/Settings.tex. Do NOT move these definitions
-% into Includes/Settings.tex: the proposal never reads that file.
+% \cventry{role}{institution}{dates} sets an entry header line, with the dates
+% right-aligned in an 8em box; the cvbody environment holds its description.
+% Defined here with \providecommand / \ifdefined rather than in
+% Includes/Settings.tex so that a document reusing these section files with its
+% own preamble also gets them, from whichever file it reads first.
 \providecommand{\cventrysep}{0.95em}
 \providecommand{\cvfirstentry}{1}
 \providecommand{\cventry}[3]{%
@@ -43,10 +29,7 @@ Division of Applied Thermodynamics and Fluid Mechanics, Department of Management
 
 I have also received my Docent title in Fluid Mechanics at Linköping University in February 2026.
 \end{cvbody}
-% ===============================================
 
-
-% ===============================================
 \section{Previous Appointments}
 \gdef\cvfirstentry{1}
 
@@ -64,4 +47,3 @@ Project: New operating procedures of hydropower for a sustainable energy system.
 \begin{cvbody}
 Taught ``Introduction to Turbomachinery'' at the undergraduate level.
 \end{cvbody}
-% ===============================================

@@ -1,20 +1,22 @@
+% Preamble for SaeedSalehi_CV.tex. Package order is deliberate: colour is
+% available before the first \definecolor, and titlesec is patched only after
+% it has redefined \section.
+
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
 
-\usepackage[page,toc,titletoc,title]{appendix}
-\usepackage{tocloft}
-\usepackage{titletoc}
-\usepackage[final]{pdfpages}
+% amsmath is required for output fidelity, not for display math: it changes
+% inline-math spacing, and without it the lines containing $\sim$ and $10,000$
+% typeset a fraction of a point differently.
+\usepackage{amsmath}
 
-\usepackage{amsmath}                     % Math packages
-\usepackage{amssymb}                     % \checkmark and other symbols
-\usepackage{caption}                     % \caption* (unnumbered captions)
-\usepackage{graphicx}                    % Enable pdflatex
-
-% \usepackage[svgnames]{xcolor}            % Colors by their 'svgnames'
+\usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage[a4paper,margin=2cm, bottom=2cm]{geometry}
 \definecolor{AccentColour}{HTML}{2C4A8C}
+\definecolor{MarkerColour}{HTML}{2C4A8C}
+
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
 % PDF metadata: without these the Title/Author/Subject/Keywords fields are
 % empty, so the file shows only as "SaeedSalehi_CV.pdf" in a browser tab,
@@ -27,53 +29,28 @@
     turbulence, uncertainty quantification, OpenFOAM, hydropower},
   pdflang={en},
 }
-\usepackage{float}
-% \usepackage{array}
-\usepackage{longtable}
 
-\usepackage{tabularx}
-% tabularx requires the \hsize factors of the X columns to sum to the number of
-% X columns. These summed to 1.51 across five, which made the UBSVU table in
-% Sections/Teaching.tex overflow the margin (27 overfull boxes at 12pt).
-% Rebalanced to sum to 5, sized so "CLS925", "2.5 ECTS" and "2021" each fit.
-\newcolumntype{B}{>{\hsize=2.45\hsize}X}
-\newcolumntype{S}{>{\hsize=0.68\hsize}X}
-\newcolumntype{V}{>{\hsize=0.85\hsize}X}
-\newcolumntype{U}{>{\hsize=0.51\hsize}X}
-
-\usepackage{booktabs}
 \usepackage{enumitem}
 \setlist[description]{leftmargin=0cm,labelindent=0cm}
-\usepackage{multicol}
-\usepackage{csquotes}
+\usepackage[fixed]{fontawesome5}
 
 \setcounter{secnumdepth}{0} % No section numbering in CV
 \frenchspacing
 % Slack so an unbreakable token (a \texttt package name, a long URL) cannot
 % push a line past the margin; at 12pt these would otherwise overflow.
-\emergencystretch=3em              % Better looking spacings after periods
-% \pagestyle{empty}           % No pagenumbers/headers/footers
-\usepackage{layout}
-\usepackage{soul}
+\emergencystretch=3em
 
-% \usepackage{fontawesome}
-\usepackage[fixed]{fontawesome5}
+% \makefield{icon}{text} sets one contact line in Sections/Contact.tex.
 \newcommand{\makefield}[2]{\makebox[1em]{\color{MarkerColour!80!black}#1} #2\hspace{1.5em}}
-
-% \swref{key} tags each item in Sections/OpenSource.tex with its bib key. It
-% prints nothing here. The Zenith proposal redefines it to print the item's
-% [Sn] citation, linking to the software entry in its publication list.
+% \swref{bibkey} tags each item in Sections/OpenSource.tex with its bibliography
+% key and prints nothing here. A document that reuses these section files with
+% its own preamble may redefine it to print the corresponding citation.
 \newcommand{\swref}[1]{}
-\definecolor{MarkerColour}{HTML}{2C4A8C}
 
-
-
-% ------------------------------------------------------------
 \usepackage{titlesec}
 \titleformat{\section}{
 \vspace{1em}\scshape\raggedright\Large\color{AccentColour}
 }{\thesection}{1em}{}[{\color{AccentColour}\titlerule[2pt]} \vspace{-2pt}]
-
 
 \titleformat{\subsection}{
 	\vspace{1em}\raggedright\bfseries\large
@@ -81,31 +58,23 @@
 
 % With secnumdepth=0 every \section takes hyperref's unnumbered (\@ssect) path,
 % which sets no anchor. Every bookmark therefore inherited the last anchor that
-% did exist -- so all 19 of them pointed at Doc-Start or section*.1, and hyperref
-% warned that a bookmark shared its parent's anchor. \phantomsection before each
-% heading gives it its own destination. Loaded after titlesec so the patch
-% applies to titlesec's redefinition.
+% did exist, so all 19 of them pointed at Doc-Start or section*.1.
+% \phantomsection before each heading gives it its own destination. Loaded after
+% titlesec so the patch applies to titlesec's redefinition.
 \usepackage{etoolbox}
 \pretocmd{\section}{\phantomsection}{}{\PackageError{CV}{patching \string\section\space failed}{}}
 \pretocmd{\subsection}{\phantomsection}{}{\PackageError{CV}{patching \string\subsection\space failed}{}}
 % Never strand a section heading at the bottom of a page: if less than about
 % five lines remain (heading, rule, and the first lines of content), start the
-% section on the next page. Without this, "Invited Talks and Expert
-% Assignments" once sat alone at the foot of a page with all its content on the
-% next one. The proposal appendix uses its own \cvheading, so it is unaffected.
+% section on the next page.
 \usepackage{needspace}
 \pretocmd{\section}{\needspace{5\baselineskip}}{}{\PackageError{CV}{patching \string\section\space for needspace failed}{}}
 \usepackage{bookmark}
-% \titleformat{\subsection}{
-% 	\vspace{1em}\raggedright\bfseries\large
-% }{\thesubsection}{1em}{}[\vspace{-8pt}\rule{0.5\textwidth}{1pt} \vspace{-5pt}]
-% ------------------------------------------------------------
-
-
 
 \usepackage[maxbibnames=99, maxcitenames=2, defernumbers=true, doi=true, url=false, sorting=none, isbn=false]{biblatex}
 \renewbibmacro{in:}{}
-\addbibresource{Publications.bib} 
+\addbibresource{Publications.bib}
+% Titles link to the DOI when there is one, else to the URL, ISBN or ISSN.
 \newbibmacro{string+doiurlisbn}[1]{%
     \iffieldundef{doi}{%
         \iffieldundef{url}{%
@@ -128,11 +97,8 @@
 \DeclareFieldFormat{title}{\usebibmacro{string+doiurlisbn}{\mkbibemph{#1}}}
 \DeclareFieldFormat[article,incollection,inproceedings]{title}%
 {\usebibmacro{string+doiurlisbn}{\mkbibquote{#1}}}
-% \setlength\bibitemsep{1\itemsep}
 \AtEveryBibitem{\clearfield{month}}
 \AtEveryCitekey{\clearfield{month}}
-% \AtNextBibliography{\small}
-% \AtBeginBibliography{\small}
 % addendum carries two different things in Publications.bib: the CRediT
 % statement on journal papers and the book chapter, and the conference name and
 % location on the @unpublished presentations. Clearing it unconditionally hid
@@ -141,6 +107,7 @@
 \AtEveryBibitem{\ifentrytype{unpublished}{}{\clearfield{addendum}}}
 \AtEveryCitekey{\ifentrytype{unpublished}{}{\clearfield{addendum}}}
 
+% Bold the author's own name, which Publications.bib annotates as "highlight".
 \renewcommand*{\mkbibnamegiven}[1]{%
   \ifitemannotation{highlight}
     {\textbf{#1}}
@@ -150,30 +117,3 @@
   \ifitemannotation{highlight}
     {\textbf{#1}}
     {#1}}
-
-
-\usepackage{tikz}
-\definecolor{frontColor}{rgb}{0.22,0.45,0.70}% light blue
-\definecolor{backColor}{RGB}{200,200,200}% grey
-\newcommand{\grade}[1]{%
-    \begin{tikzpicture}
-    \clip (1em-.4em,-.35em) rectangle (5em +.5em ,0.5em);
-    \foreach \x in {1,2,...,5}{
-        \path[{fill=backColor}] (\x em,0) circle (.3em);
-    }
-    \begin{scope}
-    \clip (1em-.4em,-.35em) rectangle (#1em +.5em ,0.5em);
-    \foreach \x in {1,2,...,5}{
-        \path[{fill=frontColor}] (\x em,0) circle (.3em);
-    }
-    \end{scope}
-    \end{tikzpicture}%
-}
-
-
-% no indent globally
-% \setlength{\parindent}{0pt}
-
-
-
-\usepackage{threeparttable}

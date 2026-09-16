@@ -1,9 +1,6 @@
 \renewcommand{\cventrysep}{0.95em}
-% ===============================================
-% Uses \cventry / cvbody, defined in Sections/Employment.tex (guarded with
-% \providecommand / \ifdefined, so whichever of the two is loaded first
-% defines them and the other is a no-op). See the note there on why they must
-% not move into Includes/Settings.tex.
+% Uses \cventry / cvbody; see the note in Sections/Employment.tex. Guarded, so
+% whichever of the two files is read first defines them.
 \providecommand{\cventrysep}{0.95em}
 \providecommand{\cvfirstentry}{1}
 \providecommand{\cventry}[3]{%
@@ -24,10 +21,6 @@
 \newpage
 \section{Education and Academic Qualifications}{}
 \gdef\cvfirstentry{1}
-% Education sits alone on its page, because Research Grants needs a full page
-% of its own and the two cannot share one. The entries are therefore set with
-% more air than elsewhere, so the page reads as deliberately open rather than
-% as a section that ran out halfway down. Restored after the section.
 \renewcommand{\cventrysep}{2.4em}
 
 \cventry{Docent}{Linköping University, Fluid Mechanics}{Feb. 2026}
@@ -53,4 +46,3 @@ The thesis investigates the impact of operational and geometrical uncertainties 
 \textit{Thesis:} Large eddy simulation of stall development around airfoils
 \end{cvbody}
 \renewcommand{\cventrysep}{0.95em}
-% ===============================================

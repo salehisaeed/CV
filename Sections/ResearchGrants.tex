@@ -1,26 +1,10 @@
-% ===============================================
-% Start on a fresh page: all four grants then sit together. Harmless in the
-% Zenith proposal, whose CV shim neuters \newpage.
 \newpage
 \section{Research Grants}{}
 
 % \grantentry{title}{funder}{period}{amount}{role}{description}
-%
-% Replaces the previous run-in description list, whose italic labels
-% ("Funding agency:", "Time period:", ...) sat inline so no two values ever
-% lined up. Here the labels occupy a fixed column, so funders, periods, amounts
-% and roles align vertically down the whole section and can be compared at a
-% glance. The title carries the weight; the role value is emphasised only where
-% it is PI, which is the distinction a reader is looking for.
-%
-% Everything is set at the CV's body size except the titles, which are small
-% bold: labels are marked by colour, not by being shrunk. The \strut gives the
-% label and value boxes a common first baseline, and the \nobreak keeps a
-% grant's metadata block from being split across a page break.
-%
-% Defined here with \providecommand rather than in Includes/Settings.tex so the
-% same file also works when it is \input by the Zenith proposal appendix, which
-% supplies its own preamble and does not read the CV's Settings.tex.
+% The labels occupy a fixed column, so funders, periods, amounts and roles line
+% up down the whole section. Guarded with \providecommand so this file also
+% works in a document that supplies its own preamble.
 \providecommand{\grantfield}[2]{%
   \nobreak\noindent\hspace*{1.3em}%
   \parbox[t]{7.25em}{\raggedright\strut{\color{AccentColour!85}#1}}%
@@ -76,4 +60,3 @@
    the grant proposal application. Subsequently, the department approved our
    proposal, leading to the recruitment of a PhD student (Mohammad), whom I am
    co-supervising.}
-% ===============================================
